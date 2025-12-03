@@ -1,0 +1,68 @@
+<div class="min-h-screen flex items-center justify-center px-4">
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10" style="top: 20%; left: 20%;"></div>
+        <div class="absolute w-96 h-96 bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10" style="top: 40%; right: 20%;"></div>
+    </div>
+
+    <div class="glass-dark rounded-xl p-8 w-full max-w-md z-10">
+        <div class="text-center mb-8">
+            <div class="flex items-center justify-center space-x-2 mb-2">
+                <svg class="w-10 h-10 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                </svg>
+                <h1 class="text-3xl font-bold text-white">INQUISITOR</h1>
+            </div>
+            <p class="text-gray-400 text-sm">Security Operations Platform</p>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginForm">
+            <h2 class="text-xl font-semibold text-white mb-6">Sign In to Your Account</h2>
+            <form onsubmit="performLogin(event)">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Email or Username</label>
+                        <input type="text" id="loginEmail" required class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500" placeholder="analyst@company.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Password</label>
+                        <input type="password" id="loginPassword" required class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">
+                        Sign In
+                    </button>
+                </div>
+            </form>
+            <div class="mt-6 text-center">
+                <p class="text-gray-400 text-sm">Don't have access? <a href="#" onclick="showSignup(); return false;" class="text-blue-400 hover:text-blue-300">Request Access</a></p>
+            </div>
+        </div>
+
+        <!-- Signup Form -->
+        <div id="signupForm" class="hidden">
+            <h2 class="text-xl font-semibold text-white mb-6">Request Platform Access</h2>
+            <form onsubmit="handleSignup(event)">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+                        <input type="text" required class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500" placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Work Email</label>
+                        <input type="email" required class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500" placeholder="analyst@company.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Organization</label>
+                        <input type="text" required class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500" placeholder="Security Operations Team">
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">
+                        Submit Request
+                    </button>
+                </div>
+            </form>
+            <div class="mt-6 text-center">
+                <p class="text-gray-400 text-sm">Already have access? <a href="#" onclick="showLogin(); return false;" class="text-blue-400 hover:text-blue-300">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+</div>

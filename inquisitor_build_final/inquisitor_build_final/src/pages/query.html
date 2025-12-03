@@ -1,0 +1,191 @@
+<div class="pt-28 px-6 max-w-7xl mx-auto">
+    
+</div><div class="p-6 max-w-7xl mx-auto" id="querySection">
+
+    <div class="max-w-6xl mx-auto">
+
+        <!-- Main Query Box -->
+        <div class="glass-dark rounded-xl p-8 mb-6">
+
+            <h2 class="text-2xl font-bold text-white mb-2">Natural Language Query Interface</h2>
+            <p class="text-gray-400 mb-6">
+                Ask questions about your security logs in plain English. Our LLM will understand and execute your query.
+            </p>
+
+            <!-- Quick Queries -->
+            <div class="mb-6">
+                <p class="text-sm font-semibold text-gray-300 mb-3">Quick Query Templates:</p>
+
+                <div class="flex flex-wrap gap-2">
+
+                    <button class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-gray-300 rounded-lg border border-slate-700 text-sm transition"
+                        onclick="loadQuery('Show all failed login attempts from external IPs in the last 24 hours')">
+                        Failed External Logins (24h)
+                    </button>
+
+                    <button class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-gray-300 rounded-lg border border-slate-700 text-sm transition"
+                        onclick="loadQuery('Find admin users accessing sensitive files after business hours')">
+                        After-Hours Admin Activity
+                    </button>
+
+                    <button class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-gray-300 rounded-lg border border-slate-700 text-sm transition"
+                        onclick="loadQuery('Show all high severity security events from the last week')">
+                        High Severity Events (7d)
+                    </button>
+
+                    <button class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-gray-300 rounded-lg border border-slate-700 text-sm transition"
+                        onclick="loadQuery('List all SSH connections from suspicious IP addresses')">
+                        Suspicious SSH Connections
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- Input Box -->
+            <div class="relative mb-6">
+                <textarea id="queryInput"
+                    class="w-full p-4 pr-32 bg-slate-900 border-2 border-slate-700 text-white rounded-lg resize-none focus:border-blue-500 focus:outline-none placeholder-gray-600"
+                    placeholder="Example: Show all failed SSH login attempts from IPs outside our network in the last 2 hours..."
+                    rows="3"></textarea>
+
+                <button onclick="executeQuery()"
+                    class="absolute right-3 bottom-3 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition font-semibold">
+                    Execute Query
+                </button>
+            </div>
+
+            <!-- Status Badges -->
+            <div class="flex items-center space-x-4 text-sm text-gray-400">
+
+                <div class="flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path>
+                    </svg>
+                    <span>Connected to ELK Stack</span>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path>
+                    </svg>
+                    <span>LLM Model Active</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Query Results -->
+        <div id="queryResponse">
+
+            <div class="glass-dark rounded-xl p-8">
+
+                <h3 class="text-xl font-bold text-white mb-6">Query Results</h3>
+
+                <!-- Semantic Analysis -->
+                <div class="mb-6">
+                    <h4 class="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">Semantic Analysis</h4>
+
+                    <div class="bg-slate-900 p-4 rounded-lg border border-slate-700">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+
+                            <div>
+                                <span class="text-gray-500">Intent:</span>
+                                <span class="text-blue-400 ml-2 font-medium" id="intent">
+                                    Search Failed Authentication
+                                </span>
+                            </div>
+
+                            <div>
+                                <span class="text-gray-500">Entities:</span>
+                                <span class="text-cyan-400 ml-2 font-medium" id="entities">
+                                    IP, Event Type, Time
+                                </span>
+                            </div>
+
+                            <div>
+                                <span class="text-gray-500">Time Range:</span>
+                                <span class="text-green-400 ml-2 font-medium" id="timerange">
+                                    Last 24 hours
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generated Query -->
+                <div class="mb-6">
+                    <h4 class="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">Generated KQL/DSL Query</h4>
+
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-800">
+                        <code id="generatedQuery" class="text-green-400 text-sm block">
+                            event.action: "login_failed" AND source.ip: !192.168.0.0/16 AND @timestamp >= now-24h
+                        </code>
+                    </div>
+                </div>
+
+                <!-- Results Summary -->
+                <div class="mb-6">
+                    <h4 class="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">Results Summary</h4>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+                        <div class="bg-gradient-to-br from-red-900 to-red-800 p-4 rounded-lg border border-red-800">
+                            <div id="resultCount" class="text-3xl font-bold text-red-400">147</div>
+                            <div class="text-xs text-gray-400 mt-1">Failed Attempts</div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-blue-900 to-blue-800 p-4 rounded-lg border border-blue-800">
+                            <div id="ipCount" class="text-3xl font-bold text-blue-400">34</div>
+                            <div class="text-xs text-gray-400 mt-1">Unique Source IPs</div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-orange-900 to-orange-800 p-4 rounded-lg border border-orange-800">
+                            <div id="threatLevel" class="text-3xl font-bold text-orange-400">HIGH</div>
+                            <div class="text-xs text-gray-400 mt-1">Threat Level</div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-purple-900 to-purple-800 p-4 rounded-lg border border-purple-800">
+                            <div class="text-3xl font-bold text-purple-400">12</div>
+                            <div class="text-xs text-gray-400 mt-1">Flagged Accounts</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Events Table -->
+                <div>
+                    <h4 class="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">Event Details</h4>
+
+                    <div class="bg-slate-900 rounded-lg border border-slate-800 overflow-hidden">
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead class="bg-slate-800 border-b border-slate-700">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left text-gray-400 font-semibold">Timestamp</th>
+                                        <th class="px-4 py-3 text-left text-gray-400 font-semibold">Source IP</th>
+                                        <th class="px-4 py-3 text-left text-gray-400 font-semibold">Target User</th>
+                                        <th class="px-4 py-3 text-left text-gray-400 font-semibold">Event Type</th>
+                                        <th class="px-4 py-3 text-left text-gray-400 font-semibold">Severity</th>
+                                        <th class="px-4 py-3 text-left text-gray-400 font-semibold">Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="eventTable" class="divide-y divide-slate-800">
+                                    <!-- Example rows here -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

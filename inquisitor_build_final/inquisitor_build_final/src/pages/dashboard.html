@@ -1,0 +1,109 @@
+<div class="pt-28 px-6 max-w-7xl mx-auto">
+
+<div class="p-6 max-w-7xl mx-auto">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        
+        <div class="glass-dark rounded-xl p-6">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <p class="text-gray-400 text-sm mb-1">Active Threats</p>
+                    <p class="text-3xl font-bold text-red-400">23</p>
+                </div>
+                <div class="bg-red-900 bg-opacity-30 p-3 rounded-lg">
+                    <svg class="w-6 h-6 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/>
+                    </svg>
+                </div>
+            </div>
+            <p class="text-xs text-gray-500">+12% from last hour</p>
+        </div>
+
+        <div class="glass-dark rounded-xl p-6">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <p class="text-gray-400 text-sm mb-1">Events Analyzed</p>
+                    <p class="text-3xl font-bold text-blue-400">1.2M</p>
+                </div>
+                <div class="bg-blue-900 bg-opacity-30 p-3 rounded-lg">
+                    <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+                    </svg>
+                </div>
+            </div>
+            <p class="text-xs text-gray-500">Last 24 hours</p>
+        </div>
+
+        <div class="glass-dark rounded-xl p-6">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <p class="text-gray-400 text-sm mb-1">Failed Logins</p>
+                    <p class="text-3xl font-bold text-yellow-400">147</p>
+                </div>
+                <div class="bg-yellow-900 bg-opacity-30 p-3 rounded-lg">
+                    <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"/>
+                    </svg>
+                </div>
+            </div>
+            <p class="text-xs text-gray-500">From 34 unique IPs</p>
+        </div>
+
+        <div class="glass-dark rounded-xl p-6">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <p class="text-gray-400 text-sm mb-1">Queries Run</p>
+                    <p class="text-3xl font-bold text-green-400">89</p>
+                </div>
+                <div class="bg-green-900 bg-opacity-30 p-3 rounded-lg">
+                    <svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"/>
+                    </svg>
+                </div>
+            </div>
+            <p class="text-xs text-gray-500">Today's activity</p>
+        </div>
+
+    </div>
+
+    <div class="glass-dark rounded-xl p-6">
+        <h3 class="text-lg font-semibold text-white mb-4">Critical Alerts - Last 2 Hours</h3>
+        <div class="space-y-3">
+            
+            <div class="flex items-center justify-between p-4 bg-red-900 bg-opacity-20 border border-red-800 rounded-lg">
+                <div class="flex items-center space-x-4">
+                    <div class="w-2 h-2 bg-red-500 rounded-full alert-pulse"></div>
+                    <div>
+                        <p class="text-white font-medium">Multiple Failed SSH Login Attempts</p>
+                        <p class="text-gray-400 text-sm">Source: 192.168.45.23 | Target: prod-server-01</p>
+                    </div>
+                </div>
+                <span class="text-red-400 text-sm font-semibold">CRITICAL</span>
+            </div>
+
+            <div class="flex items-center justify-between p-4 bg-orange-900 bg-opacity-20 border border-orange-800 rounded-lg">
+                <div class="flex items-center space-x-4">
+                    <div class="w-2 h-2 bg-orange-500 rounded-full alert-pulse"></div>
+                    <div>
+                        <p class="text-white font-medium">Unusual Data Exfiltration Detected</p>
+                        <p class="text-gray-400 text-sm">User: admin_temp | Volume: 2.3GB to external IP</p>
+                    </div>
+                </div>
+                <span class="text-orange-400 text-sm font-semibold">HIGH</span>
+            </div>
+
+            <div class="flex items-center justify-between p-4 bg-yellow-900 bg-opacity-20 border border-yellow-800 rounded-lg">
+                <div class="flex items-center space-x-4">
+                    <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                    <div>
+                        <p class="text-white font-medium">Privilege Escalation Attempt</p>
+                        <p class="text-gray-400 text-sm">User: jdoe | System: web-app-server-03</p>
+                    </div>
+                </div>
+                <span class="text-yellow-400 text-sm font-semibold">MEDIUM</span>
+            </div>
+
+        </div>
+    </div>
+
+</div>
